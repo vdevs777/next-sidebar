@@ -17,14 +17,20 @@ import { Button } from "../ui/button";
 import { SidebarOpenButton } from "./buttons/sidebar-open-button";
 import { SidebarSubButton } from "./buttons/sidebar-sub-button";
 import { CollapsibleSidebarSubButton } from "./buttons/collapsible-sidebar-sub-button";
-import { useRouter } from "next/router";
 import Link from "next/link";
+import { useState } from "react";
 
 export function Sidebar() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
-    <div className="w-[286px] h-screen bg-white flex flex-col pt-8">
+    <div className="max-w-[236px] min-w-[236px] h-screen bg-[#FAFAFA] flex flex-col pt-8">
       <Link href="/">
-        <Button className="w-full h-8 rounded-none flex justify-start gap-4  bg-white text-slate-800 hover:text-white hover:bg-zinc-600">
+        <Button className="font-normal w-full h-8 rounded-none flex justify-start gap-4  bg-[#FAFAFA] text-slate-800 hover:text-white hover:bg-zinc-600">
           <LayoutTemplate strokeWidth="1.5px" width={20} /> Painel
         </Button>
       </Link>
@@ -39,19 +45,19 @@ export function Sidebar() {
           hoverBgColor="hover:bg-purple-500"
         >
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Adicionar"
             url="/crm/costumers/add"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Pesquisar"
             url="/crm/costumers/search"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Lista"
             url="/crm/costumers/list"
@@ -61,32 +67,32 @@ export function Sidebar() {
             text="Vouchers"
           >
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-purple-500"
               text="Gerar"
               url="/crm/costumers/vouchers/generate"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-purple-500"
               text="Séries pré-pagas"
               url="/crm/costumers/vouchers/prepaid-series"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-purple-500"
               text="Pesquisar"
               url="/crm/costumers/vouchers/search"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-purple-500"
               text="Lista"
               url="/crm/costumers/vouchers/list"
             />
           </CollapsibleSidebarSubButton>
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Mapas"
             url="/crm/costumers/maps"
@@ -99,31 +105,31 @@ export function Sidebar() {
           hoverBgColor="hover:bg-purple-500"
         >
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Painel"
             url="crm/leads/dashboard"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Adicionar líder"
             url="crm/leads/add-lead"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Lista"
             url="crm/leads/list"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Cotas"
             url="crm/leads/quotes"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Mapa"
             url="crm/leads/maps"
@@ -136,31 +142,31 @@ export function Sidebar() {
           hoverBgColor="hover:bg-purple-500"
         >
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Painel"
             url="crm/tickets/dashboard"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Lista"
             url="crm/tickets/list"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Tickets fechados"
             url="crm/tickets/closed-tickets"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Arquivos"
             url="crm/tickets/archives"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Destinatários"
             url="crm/tickets/recipients"
@@ -173,59 +179,59 @@ export function Sidebar() {
           hoverBgColor="hover:bg-purple-500"
         >
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Painel"
             url="crm/finance/dashboard"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Transações"
             url="crm/finance/transactions"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Faturas"
             url="crm/finance/invoices"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Notas de crédito"
             url="crm/finance/credit-notes"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Faturas proforma"
             url="crm/finance/proforma-invoices"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Pagamentos"
             url="crm/finance/payments"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Histórico e visualização"
             url="crm/finance/history-and-preview"
           />
           <CollapsibleSidebarSubButton
             squareColor="bg-purple-500"
-            text="Extratos de pagamento"
+            text="Extratos"
           >
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-purple-500"
               text="Processando"
               url="crm/finance/payment-statements/processing"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-purple-500"
               text="Histórico"
               url="crm/finance/payment-statements/history"
@@ -236,20 +242,20 @@ export function Sidebar() {
             text="Recargas de cartão"
           >
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-purple-500"
               text="Gerar"
               url="crm/finance/refill-cards/generate"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-purple-500"
               text="Séries"
               url="crm/finance/refill-cards/series"
             />
           </CollapsibleSidebarSubButton>
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Custos"
             url="crm/finance/costs"
@@ -262,7 +268,7 @@ export function Sidebar() {
           hoverBgColor="hover:bg-purple-500"
         >
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Caixa de entrada"
             url="crm/messages/inbox"
@@ -272,20 +278,20 @@ export function Sidebar() {
             text="Envio em massa"
           >
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-purple-500"
               text="Criar"
               url="crm/messages/mass-sending/create"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-purple-500"
               text="Histórico"
               url="crm/messages/mass-sending/history"
             />
           </CollapsibleSidebarSubButton>
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-purple-500"
             text="Novidades"
             url="crm/messages/news"
@@ -307,13 +313,13 @@ export function Sidebar() {
             text="Roteadores"
           >
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Adicionar"
               url="company/network/routers/add"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Lista"
               url="company/network/routers/list"
@@ -324,25 +330,25 @@ export function Sidebar() {
             text="TR-069 (ACS)"
           >
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Painel"
               url="company/network/TR-069/dashboard"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Dispositivos"
               url="company/network/TR-069/devices"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Arquivos"
               url="company/network/TR-069/files"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Atualizar lotes"
               url="company/network/TR-069/upgrade-batches"
@@ -353,19 +359,19 @@ export function Sidebar() {
             text="Hardware"
           >
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Adicionar"
               url="company/network/hardware/add"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Lista"
               url="company/network/hardware/list"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Backups"
               url="company/network/hardware/backup"
@@ -376,13 +382,13 @@ export function Sidebar() {
             text="Redes IPv4"
           >
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Adicionar"
               url="company/network/ipv4/add"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Lista"
               url="company/network/ipv4/list"
@@ -393,20 +399,20 @@ export function Sidebar() {
             text="Redes IPv6"
           >
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Adicionar"
               url="company/network/ipv6/add"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Lista"
               url="company/network/ipv6/list"
             />
           </CollapsibleSidebarSubButton>
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-green-400"
             text="Mapas"
             url="company/network/maps"
@@ -419,37 +425,37 @@ export function Sidebar() {
           hoverBgColor="hover:bg-green-400"
         >
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-green-400"
             text="Painel"
             url="company/scheduling/dashboard"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-green-400"
             text="Projetos"
             url="company/scheduling/projects"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-green-400"
             text="Tarefas"
             url="company/scheduling/tasks"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-green-400"
             text="Calendários"
             url="company/scheduling/calendars"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-green-400"
             text="Mapas"
             url="company/scheduling/maps"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-green-400"
             text="Arquivo"
             url="company/scheduling/archive"
@@ -462,19 +468,19 @@ export function Sidebar() {
           hoverBgColor="hover:bg-green-400"
         >
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-green-400"
             text="Painel"
             url="company/inventory/dashboard"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-green-400"
             text="Itens"
             url="company/inventory/items"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-green-400"
             text="Produtos"
             url="company/inventory/products"
@@ -484,19 +490,19 @@ export function Sidebar() {
             text="Fornecimento"
           >
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Fornecedores"
               url="company/inventory/supply/suppliers"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Vendedores"
               url="company/inventory/supply/vendors"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Faturas de fornecedores"
               url="company/inventory/supply/supplier-invoices"
@@ -507,13 +513,13 @@ export function Sidebar() {
             text="Relatórios"
           >
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Itens vendidos e alugados"
               url="company/inventory/reports/sold-and-rented-items"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Itens"
               url="company/inventory/reports/items"
@@ -531,25 +537,25 @@ export function Sidebar() {
             text="Processamento"
           >
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Importar CDR"
               url="company/voice/processing/cdr-import"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Exportar CDR"
               url="company/voice/processing/cdr-export"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Histórico CDR"
               url="company/voice/processing/cdr-history"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Erros CDR"
               url="company/voice/processing/cdr-errors"
@@ -560,26 +566,26 @@ export function Sidebar() {
             text="Tabelas de taxa"
           >
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Clientes"
               url="company/voice/rate-tables/customers"
             />
             <SidebarSubButton
-              marginLeft="ml-16"
+              marginLeft="ml-14"
               squareColor="bg-green-400"
               text="Provedores"
               url="company/voice/rate-tables/providers"
             />
           </CollapsibleSidebarSubButton>
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-green-400"
             text="Categorias"
             url="company/voice/categories"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-green-400"
             text="Prefixos"
             url="company/voice/prefixes"
@@ -592,31 +598,31 @@ export function Sidebar() {
           hoverBgColor="hover:bg-green-400"
         >
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-green-400"
             text="Internet"
             url="company/tariff-plans/internet"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-green-400"
             text="Voz"
             url="company/tariff-plans/voice"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-green-400"
             text="Recorrer"
             url="company/tariff-plans/recurring"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-green-400"
             text="Vez única"
             url="company/tariff-plans/one-time"
           />
           <SidebarSubButton
-            marginLeft="ml-14"
+            marginLeft="ml-9"
             squareColor="bg-green-400"
             text="Pacotes"
             url="company/tariff-plans/bundles"
@@ -628,17 +634,15 @@ export function Sidebar() {
           SISTEMA
         </span>
         <Link href="/administration">
-          <Button className="w-full h-8 rounded-none flex justify-start gap-4  bg-white text-slate-800 hover:text-white hover:bg-zinc-600">
+          <Button className="w-full h-8 rounded-none flex justify-start gap-4 bg-[#FAFAFA] font-normal text-slate-800 hover:text-white hover:bg-zinc-600">
             <ShieldPlus strokeWidth="1.5px" width={20} /> Admin
           </Button>
         </Link>
         <Link href="/config">
-          <Button
-            className="w-full h-8 rounded-none flex justify-start gap-4  bg-white text-slate-800 hover:text-white hover:bg-zinc-600"
-          >
+          <Button className="w-full font-normal h-8 rounded-none flex justify-start gap-4  bg-[#FAFAFA] text-slate-800 hover:text-white hover:bg-zinc-600">
             <SlidersHorizontal strokeWidth="1.5px" width={20} /> Configurações
           </Button>
-        </Link>
+        </Link> 
       </section>
     </div>
   );

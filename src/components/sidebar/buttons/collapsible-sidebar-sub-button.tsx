@@ -22,11 +22,11 @@ export function CollapsibleSidebarSubButton({
     return (
         <>
             <Button
-                className={`${squareColor} relative group w-full h-8 rounded-none flex justify-start gap-4  bg-white text-slate-800 hover:bg-zinc-200`}
+                className={`${squareColor} relative group w-full h-8 rounded-none flex justify-start gap-4  bg-[#FAFAFA] text-slate-800 hover:bg-zinc-200`}
                 onClick={toggleSubButtons}
             >
                 <div className="flex items-center gap-4">
-                    <p className={`ml-14 ${isSubButtonsVisible && ('font-bold')}` }>
+                    <p className={`ml-9 ${isSubButtonsVisible && ('font-bold')} font-normal` }>
                         {text}
                     </p>
                 </div>

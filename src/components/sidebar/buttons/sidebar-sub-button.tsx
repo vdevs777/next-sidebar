@@ -15,8 +15,8 @@ export function SidebarSubButton({ text, squareColor, marginLeft, url }: Sidebar
 
     return (
         <Link href={fixedUrl} passHref>
-        <Button className="relative group w-full h-8 rounded-none flex justify-start gap-4  bg-white text-slate-800 hover:bg-zinc-200">
-            <p className={`${marginLeft}`}>{text}</p>
+        <Button className="relative group w-full h-8 rounded-none flex justify-start gap-4  bg-[#FAFAFA] text-slate-800 hover:bg-zinc-200">
+            <p className={`${marginLeft} font-normal`}>{text}</p>
             <span className={`absolute right-0 h-full w-1 ${squareColor} opacity-0 group-hover:opacity-100`}></span>
         </Button>
         </Link>

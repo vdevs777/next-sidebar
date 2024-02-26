@@ -27,14 +27,14 @@ export function SidebarOpenButton({
     return (
         <>
             <Button
-                className={`w-full h-8 rounded-none flex justify-between ${isSubButtonsVisible && ('font-bold')} bg-white hover:text-white ${iconColor} ${hoverBgColor} group`}
+                className={`w-full h-8 rounded-none flex justify-between ${isSubButtonsVisible && ('font-bold')} bg-[#FAFAFA] hover:text-white ${iconColor} ${hoverBgColor} group`}
                 onClick={toggleSubButtons}
             >
                 <div className="flex items-center gap-4">
                     {icon && (
                         <span>{icon}</span>
                     )}
-                    <p className="text-gray-900 group-hover:text-white">
+                    <p className="text-gray-900 group-hover:text-white font-normal">
                         {text}
                     </p>
                 </div>

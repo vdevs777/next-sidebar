@@ -8,7 +8,7 @@ type Props = {
 
 export function Layout({ children }: Props) {
   return (
-    <div className="font-inter">
+    <div className="font-inter font-normal">
       <Header />
       <div className="flex">
         <Sidebar />

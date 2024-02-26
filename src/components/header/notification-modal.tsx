@@ -12,7 +12,7 @@ export function NotificationModal({ children }: NotificationModalProps) {
             <SheetTrigger asChild>{children}</SheetTrigger>
             
             <SheetContent>
-                <SheetHeader className="justify-center flex ">
+                <SheetHeader className="justify-center flex">
                     <SheetTitle>Notificações</SheetTitle>
                     <button className="text-blue-500 flex items-end justify-end">Marcar todas como lidas</button>
                 </SheetHeader>
