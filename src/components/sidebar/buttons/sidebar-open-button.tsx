@@ -36,7 +36,8 @@ export function SidebarOpenButton({
         }`}
         onClick={toggleSubButtons}
       >
-        <div className="flex items-center gap-4">
+        <div 
+        className="flex items-center gap-4">
           {icon && (
             <span
               className={`group-hover:text-white ${
