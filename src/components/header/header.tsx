@@ -14,6 +14,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { NotificationModal } from "./notification-modal";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export function Header() {
   return (

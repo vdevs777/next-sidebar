@@ -19,18 +19,14 @@ import { SidebarSubButton } from "./buttons/sidebar-sub-button";
 import { CollapsibleSidebarSubButton } from "./buttons/collapsible-sidebar-sub-button";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 export function Sidebar() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
-
+  const router = useRouter();
   return (
-    <div className="max-w-[236px] min-w-[236px] h-screen bg-[#FAFAFA] flex flex-col pt-8">
+    <div className="max-w-[236px] min-w-[236px] h-screen bg-neutral-50 flex flex-col pt-8">
       <Link href="/">
-        <Button className="font-normal w-full h-8 rounded-none flex justify-start gap-4  bg-[#FAFAFA] text-slate-800 hover:text-white hover:bg-zinc-600">
+        <Button className={`font-normal w-full h-8 rounded-none flex justify-start gap-4  bg-neutral-50 text-slate-800 hover:text-white hover:bg-zinc-600 ${router.pathname === '/' && 'bg-zinc-600 text-white'}`}>
           <LayoutTemplate strokeWidth="1.5px" width={20} /> Painel
         </Button>
       </Link>
@@ -41,8 +37,8 @@ export function Sidebar() {
         <SidebarOpenButton
           icon={<User strokeWidth="1.5px" width={20} />}
           text="Clientes"
-          iconColor="text-purple-500"
-          hoverBgColor="hover:bg-purple-500"
+          color="purple-500"
+          sectionName="costumers"
         >
           <SidebarSubButton
             marginLeft="ml-9"
@@ -63,6 +59,7 @@ export function Sidebar() {
             url="/crm/costumers/list"
           />
           <CollapsibleSidebarSubButton
+          subSectionName="vouchers"
             squareColor="bg-purple-500"
             text="Vouchers"
           >
@@ -101,8 +98,8 @@ export function Sidebar() {
         <SidebarOpenButton
           icon={<Megaphone strokeWidth="1.5px" width={20} />}
           text="Leads"
-          iconColor="text-purple-500"
-          hoverBgColor="hover:bg-purple-500"
+          color="purple-500"
+          sectionName="leads"
         >
           <SidebarSubButton
             marginLeft="ml-9"
@@ -138,8 +135,8 @@ export function Sidebar() {
         <SidebarOpenButton
           icon={<Ticket width={20} strokeWidth="1.5px" />}
           text="Tickets"
-          iconColor="text-purple-500"
-          hoverBgColor="hover:bg-purple-500"
+          color="purple-500"
+          sectionName="tickets"
         >
           <SidebarSubButton
             marginLeft="ml-9"
@@ -175,8 +172,8 @@ export function Sidebar() {
         <SidebarOpenButton
           icon={<DollarSign width={20} strokeWidth="1.5px" />}
           text="Finanças"
-          iconColor="text-purple-500"
-          hoverBgColor="hover:bg-purple-500"
+          color="purple-500"
+          sectionName="finance"
         >
           <SidebarSubButton
             marginLeft="ml-9"
@@ -223,6 +220,7 @@ export function Sidebar() {
           <CollapsibleSidebarSubButton
             squareColor="bg-purple-500"
             text="Extratos"
+            subSectionName="payment-statements"
           >
             <SidebarSubButton
               marginLeft="ml-14"
@@ -240,6 +238,7 @@ export function Sidebar() {
           <CollapsibleSidebarSubButton
             squareColor="bg-purple-500"
             text="Recargas de cartão"
+            subSectionName="refill-cards"
           >
             <SidebarSubButton
               marginLeft="ml-14"
@@ -264,8 +263,8 @@ export function Sidebar() {
         <SidebarOpenButton
           icon={<Mail width={20} strokeWidth="1.5px" />}
           text="Mensagens"
-          iconColor="text-purple-500"
-          hoverBgColor="hover:bg-purple-500"
+          color="purple-500"
+          sectionName="messages"
         >
           <SidebarSubButton
             marginLeft="ml-9"
@@ -276,6 +275,7 @@ export function Sidebar() {
           <CollapsibleSidebarSubButton
             squareColor="bg-purple-500"
             text="Envio em massa"
+            subSectionName="mass-sending"
           >
             <SidebarSubButton
               marginLeft="ml-14"
@@ -305,12 +305,13 @@ export function Sidebar() {
         <SidebarOpenButton
           icon={<Globe width={20} strokeWidth="1.5px" />}
           text="Network"
-          iconColor="text-green-400"
-          hoverBgColor="hover:bg-green-400"
+          color="green-400"
+          sectionName="network"
         >
           <CollapsibleSidebarSubButton
             squareColor="bg-green-400"
             text="Roteadores"
+            subSectionName="routers"
           >
             <SidebarSubButton
               marginLeft="ml-14"
@@ -328,6 +329,7 @@ export function Sidebar() {
           <CollapsibleSidebarSubButton
             squareColor="bg-green-400"
             text="TR-069 (ACS)"
+            subSectionName="TR-069"
           >
             <SidebarSubButton
               marginLeft="ml-14"
@@ -357,6 +359,7 @@ export function Sidebar() {
           <CollapsibleSidebarSubButton
             squareColor="bg-green-400"
             text="Hardware"
+            subSectionName="hardware"
           >
             <SidebarSubButton
               marginLeft="ml-14"
@@ -380,6 +383,7 @@ export function Sidebar() {
           <CollapsibleSidebarSubButton
             squareColor="bg-green-400"
             text="Redes IPv4"
+            subSectionName="ipv4"
           >
             <SidebarSubButton
               marginLeft="ml-14"
@@ -397,6 +401,7 @@ export function Sidebar() {
           <CollapsibleSidebarSubButton
             squareColor="bg-green-400"
             text="Redes IPv6"
+            subSectionName="ipv6"
           >
             <SidebarSubButton
               marginLeft="ml-14"
@@ -421,8 +426,8 @@ export function Sidebar() {
         <SidebarOpenButton
           icon={<Calendar width={20} strokeWidth="1.5px" />}
           text="Agendamento"
-          iconColor="text-green-400"
-          hoverBgColor="hover:bg-green-400"
+          color="green-400"
+          sectionName="scheduling"
         >
           <SidebarSubButton
             marginLeft="ml-9"
@@ -464,8 +469,8 @@ export function Sidebar() {
         <SidebarOpenButton
           icon={<Layers width={20} strokeWidth="1.5px" />}
           text="Inventário"
-          iconColor="text-green-400"
-          hoverBgColor="hover:bg-green-400"
+          color="green-400"
+          sectionName="inventory"
         >
           <SidebarSubButton
             marginLeft="ml-9"
@@ -488,6 +493,7 @@ export function Sidebar() {
           <CollapsibleSidebarSubButton
             squareColor="bg-green-400"
             text="Fornecimento"
+            subSectionName="supply"
           >
             <SidebarSubButton
               marginLeft="ml-14"
@@ -511,11 +517,12 @@ export function Sidebar() {
           <CollapsibleSidebarSubButton
             squareColor="bg-green-400"
             text="Relatórios"
+            subSectionName="reports"
           >
             <SidebarSubButton
-              marginLeft="ml-14"
+              marginLeft="ml-12"
               squareColor="bg-green-400"
-              text="Itens vendidos e alugados"
+              text="Itens vendidos/alugados"
               url="company/inventory/reports/sold-and-rented-items"
             />
             <SidebarSubButton
@@ -529,12 +536,13 @@ export function Sidebar() {
         <SidebarOpenButton
           icon={<Mic width={20} strokeWidth="1.5px" />}
           text="Voz"
-          iconColor="text-green-400"
-          hoverBgColor="hover:bg-green-400"
+          color="green-400"
+          sectionName="voice"
         >
           <CollapsibleSidebarSubButton
             squareColor="bg-green-400"
             text="Processamento"
+            subSectionName="processing"
           >
             <SidebarSubButton
               marginLeft="ml-14"
@@ -564,6 +572,7 @@ export function Sidebar() {
           <CollapsibleSidebarSubButton
             squareColor="bg-green-400"
             text="Tabelas de taxa"
+            subSectionName="rate-tables"
           >
             <SidebarSubButton
               marginLeft="ml-14"
@@ -594,8 +603,8 @@ export function Sidebar() {
         <SidebarOpenButton
           icon={<PlusCircle width={20} strokeWidth="1.5px" />}
           text="Planos de tarifa"
-          iconColor="text-green-400"
-          hoverBgColor="hover:bg-green-400"
+          color="green-400"
+          sectionName="tariff-plans"
         >
           <SidebarSubButton
             marginLeft="ml-9"
@@ -634,15 +643,15 @@ export function Sidebar() {
           SISTEMA
         </span>
         <Link href="/administration">
-          <Button className="w-full h-8 rounded-none flex justify-start gap-4 bg-[#FAFAFA] font-normal text-slate-800 hover:text-white hover:bg-zinc-600">
+          <Button className={`w-full font-normal h-8 rounded-none flex justify-start gap-4  bg-neutral-50 text-slate-800 hover:text-white hover:bg-zinc-600 ${router.pathname === '/administration' && 'bg-zinc-600 text-white'}`}>
             <ShieldPlus strokeWidth="1.5px" width={20} /> Admin
           </Button>
         </Link>
         <Link href="/config">
-          <Button className="w-full font-normal h-8 rounded-none flex justify-start gap-4  bg-[#FAFAFA] text-slate-800 hover:text-white hover:bg-zinc-600">
+          <Button className={`w-full font-normal h-8 rounded-none flex justify-start gap-4  bg-neutral-50 text-slate-800 hover:text-white hover:bg-zinc-600 ${router.pathname === '/config' && 'bg-zinc-600 text-white'}`}>
             <SlidersHorizontal strokeWidth="1.5px" width={20} /> Configurações
           </Button>
-        </Link> 
+        </Link>
       </section>
     </div>
   );
