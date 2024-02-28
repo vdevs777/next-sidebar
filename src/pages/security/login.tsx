@@ -7,8 +7,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const signInSchema = z.object({
-  login: z.string().min(1),
-  password: z.string().min(1),
+  login: z.string().min(1, "Informe seu login"),
+  password: z.string().min(1, "Informe sua senha"),
 });
 
 type SignInSchema = z.infer<typeof signInSchema>;
@@ -23,9 +23,10 @@ export default function Login() {
     resolver: zodResolver(signInSchema),
   });
 
-  function handleSignIn(data: SignInSchema) {
-    setCredentials(data) 
-    console.log(credentials)
+  async function handleSignIn(data: SignInSchema) {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setCredentials(data);
+    console.log(credentials);
   }
 
   return (
@@ -38,11 +39,26 @@ export default function Login() {
           </h4>
           <form className="w-full" onSubmit={handleSubmit(handleSignIn)}>
             <div>
-              <Input className="h-8 mb-4 rounded-sm " placeholder="Login" {...register('login')}/>
-              <Input className="h-8 rounded-sm " type="password" placeholder="Senha" {...register('password')}/>
+              <Input
+                className="h-8 mb-4 rounded-sm "
+                placeholder="Login"
+                {...register("login")}
+              />
+              {errors.login?.message && <span className="text-red-600 text-sm flex items-center ">{errors.login.message}</span>}
+              <Input
+                className="h-8 rounded-sm mt-4 mb-4"
+                type="password"
+                placeholder="Senha"
+                {...register("password")}
+              />
+               {errors.password?.message && <span className="text-red-600 text-sm flex items-center ">{errors.password.message}</span>}
             </div>
             <div className="flex flex-end justify-between mt-5 items-center">
-              <Button className="w-[70px] h-8 font-medium bg-blue-600" type="submit">
+              <Button
+                className="w-[70px] h-8 font-medium bg-blue-600 hover:bg-blue-700"
+                type="submit"
+                disabled={isSubmitting}
+              >
                 Logar
               </Button>
               <Button
