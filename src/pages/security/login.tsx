@@ -6,15 +6,19 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import api from "../../lib/axios"
+import axios from "axios";
+import { title } from "process";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
+
 const signInSchema = z.object({
-  login: z.string().min(1, "Informe seu login"),
+  email: z.string().min(1, "Informe seu login"),
   password: z.string().min(1, "Informe sua senha"),
 });
 
 type SignInSchema = z.infer<typeof signInSchema>;
 
 export default function Login() {
-  const [credentials, setCredentials] = useState<SignInSchema | null>(null);
   const {
     register,
     handleSubmit,
@@ -23,10 +27,51 @@ export default function Login() {
     resolver: zodResolver(signInSchema),
   });
 
+  const [loading, setLoading] = useState(false);
+  const [grupos, setGrupos] = useState([]);
+
   async function handleSignIn(data: SignInSchema) {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setCredentials(data);
-    console.log(credentials);
+
+    setLoading(true);
+
+    await api.post("/api/Account/login", data)
+      .then((response) => {
+
+        if (localStorage.getItem("token") != null) {
+          localStorage.removeItem("token");
+        }
+        localStorage.setItem("token", response.data);
+
+        GetGrupos();
+      })
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err.response.data.title);
+        console.error(err.response.data.errors);
+        setLoading(false)
+      });
+
+  }
+
+  async function selecionarEmpresa(data: any) {
+    alert(data)
+  }
+
+  async function GetGrupos() {
+
+    await api.get("/api/groups", {
+      headers: {
+        'authorization': 'Bearer ' + localStorage.getItem("token")
+      }
+    }).then((response) => {
+      setGrupos(response.data);
+
+      console.log(grupos);
+
+    })
+      .catch((err) => {
+        const title = err.response.data.title;
+        console.error("ops! ocorreu um erro" + title);
+      });
   }
 
   return (
@@ -35,24 +80,54 @@ export default function Login() {
         <Image src="/logo2.png" alt="Logo" width={370} height={92} />
         <div className="p-10 bg-white w-[500px] rounded-md flex items-center flex-col mt-10">
           <h4 className="font-semibold text-gray-800 text-lg pb-10">
-            LOGIN DO ADMINISTRADOR
+            PORTAL
           </h4>
           <form className="w-full" onSubmit={handleSubmit(handleSignIn)}>
+
             <div>
               <Input
-                className="h-8 mb-4 rounded-sm "
-                placeholder="Login"
-                {...register("login")}
+                className="h-8 mb-4 rounded-sm"
+                placeholder="E-mail"
+                disabled={loading}
+                {...register("email")}
               />
-              {errors.login?.message && <span className="text-red-600 text-sm flex items-center ">{errors.login.message}</span>}
+              {errors.email?.message && <span className="text-red-600 text-sm flex items-center ">{errors.email.message}</span>}
               <Input
                 className="h-8 rounded-sm mt-4 mb-4"
                 type="password"
                 placeholder="Senha"
+                disabled={loading}
                 {...register("password")}
               />
-               {errors.password?.message && <span className="text-red-600 text-sm flex items-center ">{errors.password.message}</span>}
+              {errors.password?.message && <span className="text-red-600 text-sm flex items-center ">{errors.password.message}</span>}
+
+              <Select onValueChange={selecionarEmpresa}
+                disabled={!loading}>
+                <SelectTrigger className="h-8 mb-4 rounded-sm">
+                  <SelectValue placeholder="Empresa" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Empresas</SelectLabel>
+                    {/* {
+                      grupos.map((item) => {
+                        // @ts-ignore
+                        <SelectItem key={item.key.toString()} value={item.key.toString()}>{item.title}</SelectItem>
+                      })
+                    } */}
+                    <SelectItem value="1">BTT</SelectItem>
+                    <SelectItem value="2">Blink</SelectItem>
+                    
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+
+
+              {errors.password?.message && <span className="text-red-600 text-sm flex items-center ">{errors.password.message}</span>}
+
             </div>
+
+
             <div className="flex flex-end justify-between mt-5 items-center">
               <Button
                 className="w-[70px] h-8 font-medium bg-blue-600 hover:bg-blue-700"
