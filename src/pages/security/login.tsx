@@ -6,13 +6,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import api from "../../lib/axios"
-import axios from "axios";
-import { title } from "process";
+import api from "../../lib/services"
+import { config, title } from "process";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
+import Router from 'next/router'
 
 const signInSchema = z.object({
-  email: z.string().min(1, "Informe seu login"),
+  login: z.string().min(1, "Informe seu login"),
   password: z.string().min(1, "Informe sua senha"),
 });
 
@@ -28,56 +28,70 @@ export default function Login() {
   });
 
   const [loading, setLoading] = useState(false);
-  const [grupos, setGrupos] = useState([]);
+  const [filiais, setFiliais] = useState([]);
 
   async function handleSignIn(data: SignInSchema) {
 
     setLoading(true);
 
-    await api.post("/api/Account/login", data)
+    await api.get(`/api/Account/login?login=${data.login}&password=${data.password}`)
       .then((response) => {
 
-        if (localStorage.getItem("token") != null) {
-          localStorage.removeItem("token");
-        }
-        localStorage.setItem("token", response.data);
+        setToken(response.data.Token);
 
-        GetGrupos();
+        obterFiliais();
+
       })
       .catch((err) => {
-        console.error("ops! ocorreu um erro" + err.response.data.title);
-        console.error(err.response.data.errors);
+        console.error("ops! ocorreu um erro" + err);
         setLoading(false)
       });
-
   }
 
-  async function selecionarEmpresa(data: any) {
-    alert(data)
+
+  function setToken(token: string) {
+    if (localStorage.getItem("token") != null) {
+      localStorage.removeItem("token");
+    }
+    localStorage.setItem("token", token);
   }
 
-  async function GetGrupos() {
+  async function selecionarFilial(id: any) {
 
-    await api.get("/api/groups", {
+    await api.post("/api/account/filiais?filialId=" + id, null, {
       headers: {
-        'authorization': 'Bearer ' + localStorage.getItem("token")
+        'Authorization': 'Bearer ' + localStorage.getItem("token")
+      }
+    })
+      .then((response) => {
+        console.log(response);
+        setToken(response.data.Token);
+
+        Router.push('/')
+      })
+      .catch((err) => {
+        console.error("ops! ocorreu um erro:" + err);
+      });
+  }
+
+  async function obterFiliais() {
+
+    await api.get("/api/account/filiais", {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("token")
       }
     }).then((response) => {
-      setGrupos(response.data);
-
-      console.log(grupos);
-
+      setFiliais(response.data);
     })
       .catch((err) => {
-        const title = err.response.data.title;
-        console.error("ops! ocorreu um erro" + title);
+        console.error("ops! ocorreu um erro:" + err);
       });
   }
 
   return (
     <div className="flex flex-1 flex-row bg-[#F7F8FC]">
       <div className="flex w-4/6 h-screen items-center justify-center flex-col">
-        <Image src="/logo2.png" alt="Logo" width={370} height={92} />
+        <Image src="/logoCliente.png" alt="Logo" width={288} height={120} />
         <div className="p-10 bg-white w-[500px] rounded-md flex items-center flex-col mt-10">
           <h4 className="font-semibold text-gray-800 text-lg pb-10">
             PORTAL
@@ -87,46 +101,40 @@ export default function Login() {
             <div>
               <Input
                 className="h-8 mb-4 rounded-sm"
-                placeholder="E-mail"
+                placeholder="login"
                 disabled={loading}
-                {...register("email")}
+                {...register("login")}
               />
-              {errors.email?.message && <span className="text-red-600 text-sm flex items-center ">{errors.email.message}</span>}
+              {errors.login?.message && <span className="text-red-600 text-sm flex items-center ">{errors.login.message}</span>}
               <Input
                 className="h-8 rounded-sm mt-4 mb-4"
                 type="password"
-                placeholder="Senha"
+                placeholder="senha"
                 disabled={loading}
                 {...register("password")}
               />
               {errors.password?.message && <span className="text-red-600 text-sm flex items-center ">{errors.password.message}</span>}
 
-              <Select onValueChange={selecionarEmpresa}
+              <Select onValueChange={selecionarFilial}
                 disabled={!loading}>
                 <SelectTrigger className="h-8 mb-4 rounded-sm">
-                  <SelectValue placeholder="Empresa" />
+                  <SelectValue placeholder="Filiai(s)" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>Empresas</SelectLabel>
-                    {/* {
-                      grupos.map((item) => {
+
+                    {
+                      filiais.map((item) =>
                         // @ts-ignore
-                        <SelectItem key={item.key.toString()} value={item.key.toString()}>{item.title}</SelectItem>
-                      })
-                    } */}
-                    <SelectItem value="1">BTT</SelectItem>
-                    <SelectItem value="2">Blink</SelectItem>
-                    
+                        <SelectItem key={item.Id.toString()} value={item.Id.toString()}>{item.Nome}</SelectItem>
+                      )
+                    }
                   </SelectGroup>
                 </SelectContent>
+
               </Select>
 
-
-              {errors.password?.message && <span className="text-red-600 text-sm flex items-center ">{errors.password.message}</span>}
-
             </div>
-
 
             <div className="flex flex-end justify-between mt-5 items-center">
               <Button
@@ -138,6 +146,7 @@ export default function Login() {
               </Button>
               <Button
                 variant="link"
+                disabled
                 className="text-md font-normal text-gray-500"
               >
                 Esqueci minha senha
@@ -147,7 +156,8 @@ export default function Login() {
         </div>
       </div>
       <div className="flex text-white bg-sky-950 w-2/6 h-screen items-center justify-center">
-        <h3 className="font-bold text-2xl">PORTAL DO ADMINISTRADOR</h3>
+        <Image src="/wgc_background.png" alt="Logo" width={700} height={592} />
+        {/* <h3 className="font-bold text-2xl">PORTAL DO ADMINISTRADOR</h3> */}
       </div>
     </div>
   );
