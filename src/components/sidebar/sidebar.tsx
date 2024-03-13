@@ -20,9 +20,16 @@ import { CollapsibleSidebarSubButton } from "./buttons/collapsible-sidebar-sub-b
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { useMediaQuery } from "@react-hook/media-query"
 
 export function Sidebar() {
   const router = useRouter();
+  const isLargeScreen = useMediaQuery("(max-width: 1024px)")
+
+  if(isLargeScreen) {
+    return null
+  }
+
   return (
     <div className="max-w-[236px] min-w-[236px] h-screen bg-neutral-50 flex flex-col pt-8">
       <Link href="/">
