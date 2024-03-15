@@ -245,14 +245,15 @@ export default function Dashboard() {
           </TableBody>
         </Table>
       </div>
-      <div className="h-[33.75rem] w-[50rem] sm:h-[33.75rem] sm:w-[50rem] bg-white mt-5 p-4">
+      <div className="grid xs:grid-cols-2 grid-cols-1 gap-3 mt-5">
+      <div className="h-[33.75rem] w-[50rem] sm:h-[33.75rem] sm:w-[50rem] bg-white p-4">
         <div className="flex flex-row items-center gap-2">
           <Calculator fontWeight="regular" size={20}/>
           <h5 className="font-semibold">
             Faturamento por período (IVA incluído)
           </h5>
         </div>
-        <div className="w-auto h-auto bg-white mt-5">
+        <div className="bg-white mt-5 w-[37.5rem] h-[28.125rem]">
           <ResponsiveContainer>
             <BarChart
               className="w-[37.5rem] h-[28.125rem]"
@@ -287,6 +288,50 @@ export default function Dashboard() {
             </BarChart>
           </ResponsiveContainer>
         </div>
+      </div>
+      <div className="h-[33.75rem] w-[50rem] sm:h-[33.75rem] sm:w-[50rem] bg-white p-4">
+        <div className="flex flex-row items-center gap-2">
+          <Calculator fontWeight="regular" size={20}/>
+          <h5 className="font-semibold">
+            Faturamento por período (IVA incluído)
+          </h5>
+        </div>
+        <div className="bg-white mt-5 w-[37.5rem] h-[28.125rem]">
+          <ResponsiveContainer>
+            <BarChart
+              className="w-[37.5rem] h-[28.125rem]"
+              data={data}
+              margin={{
+                top: 5,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" className="text-xs "/>
+              <YAxis className="text-xs"/>
+              <Tooltip />
+              <Legend />
+              <Bar
+                dataKey="pago"
+                fill="#5db85c"
+                activeBar={<Rectangle fill="pink" stroke="blue" />}
+              />
+              <Bar
+                dataKey="não_pago"
+                fill="#d95450"
+                activeBar={<Rectangle fill="gold" stroke="purple" />}
+              />
+              <Bar
+                dataKey="pago_na_hora"
+                fill="#FFCD56"
+                activeBar={<Rectangle fill="gold" stroke="purple" />}
+              />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
       </div>
     </div>
   );
