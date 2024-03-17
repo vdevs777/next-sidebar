@@ -10,11 +10,11 @@ type Props = {
 };
 
 export function CardItem({ icon, number, title, details, color }: Props) {
-  const truncatedTitle = title.length > 15 ? `${title.slice(0, 15)}...` : title;
+  const truncatedTitle = title.length > 12 ? `${title.slice(0, 15)}...` : title;
   const isTruncated = truncatedTitle !== title;
 
   return (
-    <button className="w-full sm:w-auto max-w-[24.25rem] h-[88px] bg-white flex">
+    <div className="w-full sm:w-auto max-w-[24.25rem] h-[88px] bg-white flex">
       <div className="flex p-4 flex-col min-w-full gap-2.5">
         <div className="flex w-full items-center gap-2">
           {icon}
@@ -25,6 +25,6 @@ export function CardItem({ icon, number, title, details, color }: Props) {
           <span className={`font-bold text-xl ${color}`}>{number}</span>
         </div>
       </div>
-    </button>
+    </div>
   );
 }

@@ -7,7 +7,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   return (
-    <>
+    <div>
       {router.pathname === "/security/login" ? (
         <Component {...pageProps} />
       ) : (
@@ -15,6 +15,6 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </Layout>
       )}
-    </>
+    </div>
   );
 }

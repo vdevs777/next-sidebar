@@ -54,13 +54,13 @@ export function SidebarOpenButton({
                             {icon}
                         </span>
                     )}
-                    <p
+                    <span
                         className={`text-gray-900 group-hover:text-white ${path === sectionName && `text-white`
                             } ${isSubButtonsVisible ? "font-bold" : "font-normal"
                             }`}
                     >
                         {text}
-                    </p>
+                    </span>
                 </div>
                 <div className="ml-auto">
                     {!isSubButtonsVisible && (

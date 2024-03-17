@@ -22,7 +22,7 @@ export function SidebarSubButton({
   return (
     <Link href={fixedUrl} passHref>
       <Button className="relative group w-full h-8 rounded-none flex justify-start gap-4  bg-[#FAFAFA] text-slate-800 hover:bg-zinc-200">
-        <p className={`${marginLeft} font-normal`}>{text}</p>
+        <span className={`${marginLeft} font-normal`}>{text}</span>
         {isActive ? (
           <span
             className={`absolute right-0 h-full w-1 ${squareColor} opacity-100`}

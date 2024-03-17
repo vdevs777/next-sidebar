@@ -31,9 +31,9 @@ export function CollapsibleSidebarSubButton({
                 onClick={toggleSubButtons}
             >
                 <div className="flex items-center gap-4">
-                    <p className={`ml-9 ${path === subSectionName ? "font-bold" : "font-normal"}`}>
+                    <span className={`ml-9 ${path === subSectionName ? "font-bold" : "font-normal"}`}>
                         {text}
-                    </p>
+                    </span>
                 </div>
                 <div className="ml-auto">
                 {!isSubButtonsVisible && (<ChevronDown className="text-gray-600 " width={16}/>)}
