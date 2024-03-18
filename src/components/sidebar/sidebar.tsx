@@ -18,9 +18,7 @@ import { SidebarOpenButton } from "./buttons/sidebar-open-button";
 import { SidebarSubButton } from "./buttons/sidebar-sub-button";
 import { CollapsibleSidebarSubButton } from "./buttons/collapsible-sidebar-sub-button";
 import Link from "next/link";
-import { useState } from "react";
 import { useRouter } from "next/router";
-import { useMediaQuery } from "@react-hook/media-query";
 
 export function Sidebar() {
   const router = useRouter();

@@ -41,19 +41,9 @@ import {
   Pie,
   Cell,
 } from "recharts";
-import { data1, data2, data3 } from "../../../others/data";
-
-
+import { COLORS1, COLORS2, data1, data2, data3, data4 } from "../../../others/data";
 
 export default function Dashboard() {
-  const COLORS = [
-    "#428BCA",
-    "#5DB85C",
-    "#5AC0DE",
-    "#D95450",
-    "#F1AE4E",
-    "#3949AB",
-  ];
   return (
     <div className="pr-4">
       <PageHeader path="Finanças /" title="Painel" icon={<DollarSign />} />
@@ -277,13 +267,11 @@ export default function Dashboard() {
         <div className="sm:w-full bg-white p-4">
           <div className="flex flex-row items-center gap-2">
             <Calculator fontWeight="regular" size={20} />
-            <h5 className="font-semibold">
-              Top 10 pagadores
-            </h5>
+            <h5 className="font-semibold">Top 10 pagadores</h5>
           </div>
           <div className="bg-white mt-5 w-auto sm:w-full h-[28.125rem] flex items-center justify-center">
-            <ResponsiveContainer width="100%" height="100%" >
-              <PieChart className="flex flex-row"> 
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart className="flex flex-row">
                 <Pie
                   data={data3}
                   cx="50%"
@@ -291,13 +279,13 @@ export default function Dashboard() {
                   innerRadius={0}
                   outerRadius="80%"
                   fill="#8884d8"
-                  paddingAngle={3}
+                  paddingAngle={2}
                   dataKey="value"
                 >
                   {data3.map((_, index) => (
                     <Cell
                       key={`cell-${index}`}
-                      fill={COLORS[index % COLORS.length]}
+                      fill={COLORS1[index % COLORS1.length]}
                     />
                   ))}
                 </Pie>
@@ -307,41 +295,34 @@ export default function Dashboard() {
             </ResponsiveContainer>
           </div>
         </div>
-        <div className="sm:w-full bg-white p-4 mt-5 sm:mt-0">
+        <div className="sm:w-full bg-white p-4">
           <div className="flex flex-row items-center gap-2">
             <Calculator fontWeight="regular" size={20} />
-            <h5 className="font-semibold">
-              Faturamento por período (IVA incluído)
-            </h5>
+            <h5 className="font-semibold">Top 10 pagadores</h5>
           </div>
-          <div className="bg-white mt-5 w-auto sm:w-full h-[28.125rem]">
+          <div className="bg-white mt-5 w-auto sm:w-full h-[28.125rem] flex items-center justify-center">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart
-                className="w-full h-[28.125rem]"
-                data={data2}
-                margin={{
-                  top: 20,
-                  right: 30,
-                  left: 20,
-                  bottom: 5,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" className="text-xs" />
-                <YAxis className="text-xs" />
+              <PieChart className="flex flex-row">
+                <Pie
+                  data={data4}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={0}
+                  outerRadius="80%"
+                  fill="#8884d8"
+                  paddingAngle={2}
+                  dataKey="value"
+                >
+                  {data3.map((_, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS2[index % COLORS2.length]}
+                    />
+                  ))}
+                </Pie>
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="dinheiro" stackId="a" fill="#428BCA" />
-                <Bar dataKey="cartão de crédito" stackId="a" fill="#5DB85C" />
-                <Bar dataKey="paypal" stackId="a" fill="#5AC0DE" />
-                <Bar
-                  dataKey="transferência bancária"
-                  stackId="a"
-                  fill="#D95450"
-                />
-                <Bar dataKey="outros" stackId="a" fill="#F1AE4E" />
-                <Bar dataKey="cartão pré-pago" stackId="a" fill="#3949AB" />
-              </BarChart>
+              </PieChart>
             </ResponsiveContainer>
           </div>
         </div>
