@@ -41,7 +41,7 @@ import {
   Pie,
   Cell,
 } from "recharts";
-import { data1, data2, data3 } from "./data.provisory";
+import { data1, data2, data3 } from "../../../others/data";
 
 
 

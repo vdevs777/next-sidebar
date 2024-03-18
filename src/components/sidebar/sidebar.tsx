@@ -27,7 +27,7 @@ export function Sidebar() {
 
   return (
     <div className='lg:block hidden'>
-        <div className="max-w-[236px] min-w-[236px] h-full bg-neutral-50 flex flex-col pt-8">
+        <div className="max-w-[236px] min-w-[236px] h-max bg-neutral-50 flex flex-col pt-8">
           <Link href="/">
             <Button
               className={`font-normal w-full h-8 rounded-none flex justify-start gap-4  bg-neutral-50 text-slate-800 hover:text-white hover:bg-zinc-600 ${
